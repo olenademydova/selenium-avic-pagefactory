@@ -3,6 +3,8 @@ package pageobject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,6 +15,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void waitForPageLoadingComplete(long timeToWait) {
@@ -20,9 +23,9 @@ public class BasePage {
         wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
 
-    public void waitForVisibilityOfElement(long timeout, By locator) {
+    public void waitForVisibilityOfElement(long timeout, WebElement webElement) {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
     public void waitForElementToDisappear(long timeout, By locator) {

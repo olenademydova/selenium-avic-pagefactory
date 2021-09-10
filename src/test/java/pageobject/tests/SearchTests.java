@@ -3,7 +3,6 @@ package pageobject.tests;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class SearchTests extends BaseTest {
@@ -20,7 +19,7 @@ public class SearchTests extends BaseTest {
     public void checkElementsAmountOnSearchPage() {
         getHomePage().searchByKeyword(SEARCH_KEYWORD);
         getHomePage().implicitWait(30);
-        assertEquals(getSearchResultPage().getSearchResultCount(), 12);
+        assertTrue(getSearchResultPage().getSearchResultCount() > 0);
     }
 
     @Test

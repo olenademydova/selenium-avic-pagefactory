@@ -1,26 +1,33 @@
 package pageobject;
 
 import org.openqa.selenium.WebDriver;
-
-import static org.openqa.selenium.By.xpath;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-    public static final String LOGIN = "//div[@class='sign-holder clearfix']//input[@name='login']";
-    public static final String PASSWORD = "//input[@type='password']";
-    public static final String LOGIN_BUTTON = "//div[@class='sign-holder clearfix']//button[@type='submit']";
-    public static final String POPUP_MESSAGE = "//div[contains(@class,'js_message')]";
+    @FindBy(xpath = "//div[@class='sign-holder clearfix']//input[@name='login']")
+    private WebElement loginField;
+
+    @FindBy(xpath = "//input[@type='password']")
+    private WebElement passwordField;
+
+    @FindBy(xpath = "//div[@class='sign-holder clearfix']//button[@type='submit']")
+    private WebElement loginButton;
+
+    @FindBy(xpath = "//div[contains(@class,'js_message')]")
+    private WebElement popUpMessage;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public void fillCredentialsAndLogin(String login, String password) {
-        driver.findElement(xpath(LOGIN)).sendKeys(login);
-        driver.findElement(xpath(PASSWORD)).sendKeys(password);
-        driver.findElement(xpath(LOGIN_BUTTON)).click();
+        loginField.sendKeys(login);
+        passwordField.sendKeys(password);
+        loginButton.click();
     }
 
     public String getPopupMessageText() {
-        return driver.findElement(xpath(POPUP_MESSAGE)).getText();
+        return popUpMessage.getText();
     }
 }

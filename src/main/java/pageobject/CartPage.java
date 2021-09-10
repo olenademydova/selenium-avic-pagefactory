@@ -1,16 +1,17 @@
 package pageobject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.openqa.selenium.By.id;
-import static org.openqa.selenium.By.xpath;
-
 public class CartPage extends BasePage {
-    private static final String REMOVE_FROM_CART_BUTTON = "//div[@class='item']/i[contains(@class,'js-btn-close')]";
-    private static final String CART_TEXT_MESSAGE = "//div[@data-cart-name='modal']//p[@class='text-center']";
+    @FindBy(xpath = "//div[@class='item']/i[contains(@class,'js-btn-close')]")
+    private WebElement removeFromCartButton;
+
+    @FindBy(xpath = "//div[@data-cart-name='modal']//p[@class='text-center']")
+    private WebElement cartTextMessage;
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -18,15 +19,11 @@ public class CartPage extends BasePage {
 
     public void clickOnRemoveFromCartButton() {
         waitForPageLoadingComplete(10000);
-        driver.findElement(xpath(REMOVE_FROM_CART_BUTTON)).click();
+        removeFromCartButton.click();
     }
 
     public String getCartTextMessageText() {
-        return driver.findElement(xpath(CART_TEXT_MESSAGE)).getText();
-    }
-
-    public By getCartTextMessage() {
-        return id(CART_TEXT_MESSAGE);
+        return cartTextMessage.getText();
     }
 
     public void waitForPageLoadingComplete(long timeToWait) {

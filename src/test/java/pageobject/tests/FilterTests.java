@@ -9,7 +9,7 @@ public class FilterTests extends BaseTest {
     private static final String SERIES_KEYWORD = "MacBook 12";
 
     @Test
-    public void verifyFilteringBySeries(){
+    public void verifyFilteringBySeries() {
         getHomePage().clickOnProductCatalogueButton();
         getHomePage().clickOnAppleStoreButton();
         getAppleStorePage().clickOnMacBookButton();

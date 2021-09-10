@@ -14,14 +14,14 @@ public class AddToCartTests extends BaseTest {
         getAppleStorePage().clickOnIPhoneButton();
         getIphonePage().waitForPageLoadingComplete(30);
         getIphonePage().clickOnAddToCartButton();
-        getHomePage().waitForVisibilityOfElement(30, getHomePage().getAddToCartPopup());
+        getHomePage().waitForVisibilityOfElement(30, getHomePage().getAddToCartPopUp());
         getIphonePage().clickOnContinueShoppingButton();
         Thread.sleep(1000);
         assertEquals(getHomePage().getTextOfAmountProductsInCart(), EXPECTED_AMOUNT_OF_PRODUCTS_IN_CART);
     }
 
     @Test
-    public void checkRemovalOfOneItemFromCart(){
+    public void checkRemovalOfOneItemFromCart() {
         getHomePage().clickOnProductCatalogueButton();
         getHomePage().clickOnAppleStoreButton();
         getAppleStorePage().clickOnIPhoneButton();

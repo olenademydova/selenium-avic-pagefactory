@@ -1,8 +1,6 @@
 package pageobject.tests;
 
 import org.testng.annotations.Test;
-import pageobject.HomePage;
-import pageobject.LoginPage;
 
 import static org.testng.Assert.assertEquals;
 
@@ -12,7 +10,7 @@ public class LogInTests extends BaseTest {
     private final String popupErrorMessage = "Неверные данные авторизации.";
 
     @Test
-    public void verifyUserCannotLoginWithInvalidCredentials(){
+    public void verifyUserCannotLoginWithInvalidCredentials() {
         getHomePage().clickOnSignInButton();
         getLoginPage().fillCredentialsAndLogin(invalidLogin, invalidPassword);
         assertEquals(getLoginPage().getPopupMessageText(), popupErrorMessage);
